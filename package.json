@@ -1,0 +1,30 @@
+{
+  "name": "lab-05-exploring-models",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/llastflowers/lab-05-exploring-models.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/llastflowers/lab-05-exploring-models/issues"
+  },
+  "homepage": "https://github.com/llastflowers/lab-05-exploring-models#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.13"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "eslint": "^6.7.2",
+    "jest": "^24.9.0"
+  }
+}
