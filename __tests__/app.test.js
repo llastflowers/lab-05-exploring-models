@@ -1,28 +1,42 @@
+require('dotenv').config();
+require('../lib/utils/connect')();
 const request = require('supertest');
 const app = require('../lib/app');
+const mongoose = require('mongoose');
 
 describe('application routes', () => {
-    it('has a home route that says hello everyone', () => {
+    beforeAll(done => {
+        done();
+    });
+      
+    afterAll(done => {
+        // Closing the DB connection allows Jest to exit successfully.
+        mongoose.connection.close();
+        done();
+    });
+    it('has a home route that says i am a candle', () => {
         return request(app)
             .get('/')
             .then(res => {
-                expect(res.body).toEqual({ text: 'hello' });
+                expect(res.body).toEqual({ text: 'i am a candle' });
             });
     });
 
-    it('has a /hello post route', () => {
+    it('has a /candle post route', () => {
         return request(app)
-            .post('/hello')
+            .post('/candle')
             .send({
-                name: 'spot',
-                age: 5,
-                weight: '20 lbs'
+                type: 'soy',
+                scent: 'vetiver',
+                oz: 7.5
             })
             .then(res => {
                 expect(res.body).toEqual({
-                    name: 'spot',
-                    age: 5,
-                    weight: '20 lbs'
+                    __v: expect.any(Number),
+                    _id: expect.any(String),
+                    type: 'soy',
+                    scent: 'vetiver',
+                    oz: 7.5
                 });
             });
     });
