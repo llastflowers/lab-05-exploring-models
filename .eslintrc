@@ -8,15 +8,17 @@
     "sourceType": "module"
   },
   "env": {
+    "node": true,
     "browser": true,
-    "es6": true
+    "es6": true,
+    "jest": true
   },
   "globals": {
     "QUnit": false
   },
   "rules": {
     "eqeqeq": ["error", "always"],
-    "no-console": "warn",
+    "no-console": 0,
     "indent": [
       "error",
       4,
