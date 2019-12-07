@@ -3,6 +3,7 @@ require('../lib/utils/connect')();
 const request = require('supertest');
 const app = require('../lib/app');
 const mongoose = require('mongoose');
+const Candle = require('../lib/models/Candle');
 
 describe('application routes', () => {
     beforeAll(done => {
@@ -36,6 +37,25 @@ describe('application routes', () => {
                     _id: expect.any(String),
                     type: 'soy',
                     scent: 'vetiver',
+                    oz: 7.5
+                });
+            });
+    });
+
+    it('has a /candle findById route', async() => {
+        const beeswaxCandle = await Candle.create({
+            type: 'beeswax',
+            scent: 'none',
+            oz: 7.5
+        });
+        return request(app)
+            .get(`/${beeswaxCandle._id}`)
+            .then(res => {
+                expect(res.body).toEqual({
+                    __v: expect.any(Number),
+                    _id: expect.any(String),
+                    type: 'beeswax',
+                    scent: 'none',
                     oz: 7.5
                 });
             });
