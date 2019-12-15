@@ -71,4 +71,47 @@ describe('application routes', () => {
                 });
             });
     });
+
+    it('it has a /candle update route', async() => {
+        const beeswaxCandle = await Candle.create({
+            type: 'beeswax',
+            scent: 'none',
+            oz: 7.5
+        });
+        return request(app)
+            .put(`/update/${beeswaxCandle._id}`)
+            .send({ 
+                type: 'beeswax',
+                scent: 'none',
+                oz: 7.5 
+            })
+            .then(res => {
+                expect(res.body).toEqual({
+                    __v: 0,
+                    _id: expect.any(String),
+                    type: 'beeswax',
+                    scent: 'none',
+                    oz: 7.5
+                });
+            });
+    });
+      
+    it('it has a /candle delete route', async() => {
+        const beeswaxCandle = await Candle.create({
+            type: 'beeswax',
+            scent: 'none',
+            oz: 7.5
+        });
+        return request(app)
+            .delete(`/delete/${beeswaxCandle._id}`)
+            .then(res => {
+                expect(res.body).toEqual({
+                    __v: expect.any(Number),
+                    _id: expect.any(String),
+                    type: 'beeswax',
+                    scent: 'none',
+                    oz: 7.5
+                });
+            });
+    });
 });
